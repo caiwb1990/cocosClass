@@ -12,6 +12,9 @@ public:
 	virtual bool init();
 	virtual void update(float dt);
 
+
+	void endFunction();
+
 	CREATE_FUNC(ActionScene);
 };
 

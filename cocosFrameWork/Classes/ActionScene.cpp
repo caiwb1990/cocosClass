@@ -27,7 +27,8 @@ bool ActionScene::init()
 	//auto action = JumpBy::create(0.5f, Vec2(200, 0), 200, 1);
 
 	//±´Èû¶ûÇúÏß
-	/*ccBezierConfig bezierCfg;
+	/*
+	ccBezierConfig bezierCfg;
 	bezierCfg.endPosition = Point(DISPLAY_CX + 400, DISPLAY_CY);
 	bezierCfg.controlPoint_1 = Point(DISPLAY_CX , DISPLAY_CY +200);
 	bezierCfg.controlPoint_2 = Point(DISPLAY_CX + 500, DISPLAY_CY - 200);
@@ -41,6 +42,7 @@ bool ActionScene::init()
 	//auto action = Spawn::create(actionScale, actionRotate, NULL);
 
 	/**/
+	/*
 	auto moveActionRight = MoveBy::create(1.0f, Vec2(200, 0));
 	auto moveActionLeft = moveActionRight->reverse();//MoveBy::create(1.0f, Vec2(-200, 0));
 
@@ -53,10 +55,33 @@ bool ActionScene::init()
 
 	//auto action = Repeat::create(seqAction, 20);
 	auto action = RepeatForever::create(seqAction);
-	
-	bkqSpr->runAction(action->reverse());
+	*/
+
+
+	//FADE
+	//auto action = FadeOut::create(5.f);
+	//tint
+	//auto action = TintBy::create(3.f, 100, -30, 50);
+	//blink
+	//auto action = Blink::create(3.f, 10);
+
+	//func
+	auto moveAction = MoveBy::create(2.f, Vec2(200, 0));
+
+	//auto action = Sequence::create(moveAction,
+	//	CallFunc::create(CC_CALLBACK_0(ActionScene::endFunction,this))
+	//	, NULL);
+	auto action = Sequence::create(moveAction,
+		CallFunc::create(std::bind(&ActionScene::endFunction,this)), NULL);
+	bkqSpr->runAction(action);
 
 	return true;
+}
+
+void ActionScene::endFunction()
+{
+	CCLOG("ActionScene::endFunction()");
+
 }
 
 void ActionScene::update(float dt)

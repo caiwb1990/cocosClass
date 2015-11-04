@@ -3,6 +3,8 @@
 #include "GameScene.h"
 #include "ActionScene.h"
 
+#include "./gce/MyAction/Topic.h"
+
 USING_NS_CC;
 
 AppDelegate::AppDelegate() {
@@ -40,6 +42,12 @@ bool AppDelegate::applicationDidFinishLaunching() {
         director->setOpenGLView(glview);
     }
 
+	//添加目标文件夹
+	FileUtils::getInstance()->addSearchPath("Disk/");
+	FileUtils::getInstance()->addSearchPath("Rebound/");
+	FileUtils::getInstance()->addSearchPath("MyAction/");
+
+
     // turn on display FPS
     director->setDisplayStats(true);
 
@@ -51,7 +59,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     // create a scene. it's an autorelease object
     //auto scene = HelloWorld::createScene();
 	auto scene = ActionScene::create();
-
+	//auto scene = Topic::createScene();
 	//auto scene = GameScene::create();
     // run
     director->runWithScene(scene);
