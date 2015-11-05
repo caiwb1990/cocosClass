@@ -3,6 +3,8 @@
 #include "GameScene.h"
 #include "ActionScene.h"
 
+#include "../games/game2048/Game2048.h"
+
 #include "./gce/MyAction/Topic.h"
 
 USING_NS_CC;
@@ -41,6 +43,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
         glview = GLViewImpl::create("My Game");
         director->setOpenGLView(glview);
     }
+	//实际分辨率。 设计分辨率。  资源分辨率
+	glview->setFrameSize(320,568);
+	glview->setDesignResolutionSize(320, 568, ResolutionPolicy::FIXED_WIDTH);
 
 	//添加目标文件夹
 	FileUtils::getInstance()->addSearchPath("Disk/");
@@ -58,10 +63,12 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     // create a scene. it's an autorelease object
     //auto scene = HelloWorld::createScene();
-	auto scene = ActionScene::create();
+	//auto scene = ActionScene::create();
 	//auto scene = Topic::createScene();
 	//auto scene = GameScene::create();
     // run
+	auto scene = Game2048::create();
+
     director->runWithScene(scene);
 
     return true;
